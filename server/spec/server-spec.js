@@ -44,7 +44,6 @@ describe('Persistent Node Chat Server', function() {
           roomname: 'Hello'
         }
       }, function () {
-        console.log('entered server-spec');
         // Now if we look in the database, we should find the
         // posted message there.
 
@@ -66,7 +65,7 @@ describe('Persistent Node Chat Server', function() {
     });
   });
 
-  xit('Should output all messages from the DB', function(done) {
+  it('Should output all messages from the DB', function(done) {
     // Let's insert a message into the db
     var msg = {
       message: 'Men like you can never change!',
@@ -89,6 +88,7 @@ describe('Persistent Node Chat Server', function() {
       // the message we just inserted:
       request('http://127.0.0.1:3000/classes/messages', function(error, response, body) {
         var messageLog = JSON.parse(body);
+        console.log(messageLog);
         expect(messageLog[0].msg).to.equal('Men like you can never change!');
         expect(messageLog[0].roomname).to.equal('main');
         done();

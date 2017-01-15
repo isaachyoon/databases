@@ -1,11 +1,25 @@
 var db = require('../db');
-
 // connect database to server
 db.connection.connect();
 
 module.exports = {
   messages: {
-    get: function () {}, // a function which produces all the messages
+    get: function (callback) {
+      var thingy = [];
+      console.log('GETTING HERE');
+      db.connection.query('select * from messages', (err, rows) => {
+        if (err) {
+          throw err;
+        }
+        thingy = rows.map(function(item) {
+          return item;
+        });
+        console.log('thingy: ', thingy);
+        callback(thingy);
+
+        // controllers.messages.get(thingy, null);
+      });
+    }, // a function which produces all the messages
     post: function (data) {
       // console.log('data from models', data);
       console.log('MODELS MESSAGES POST');

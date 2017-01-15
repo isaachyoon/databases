@@ -11,6 +11,6 @@ exports.connection = mysql.createConnection({
   database: 'chat'
 });
 
-//this.connection.connect();
+// this.connection.connect();
 
 // this.connection.end();
